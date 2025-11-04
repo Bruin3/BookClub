@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exert.dao.BookParamMapper">
+
+    <select id="queryParamIdByBookId" resultType="BookParam">
+        select * from BookClubDB.BookParam
+        where bookId = #{bookId}
+    </select>
+
+    <select id="queryBookIdByParamId" resultType="BookParam">
+        select * from BookClubDB.BookParam
+        where paramId = #{paramId}
+    </select>
+
+    <insert id="addBookParam" parameterType="BookParam">
+        insert into BookClubDB.BookParam (bookId, paramId)
+        values (#{bookId},#{paramId});
+    </insert>
+
+    <delete id="deleteBookParamByBookId" parameterType="int">
+        delete from BookClubDB.BookParam
+        where bookId = #{bookId}
+    </delete>
+
+    <delete id="deleteBookParamByParamId" parameterType="int">
+        delete from BookClubDB.BookParam
+        where paramId = #{paramId}
+    </delete>
+
+</mapper>

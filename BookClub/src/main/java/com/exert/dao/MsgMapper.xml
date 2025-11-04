@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exert.dao.MsgMapper">
+
+    <select id="queryAllMsg" resultType="Msg">
+        select * from BookClubDB.Msg
+    </select>
+
+    <insert id="addMsg" parameterType="Msg">
+        insert into BookClubDB.Msg (msgId, msg, msgUserId, msgUserName, msgTime)
+        values (#{msgId},#{msg},#{msgUserId},#{msgUserName},#{msgTime});
+    </insert>
+
+    <delete id="deleteMsgByMsgId" parameterType="int">
+        delete from BookClubDB.Msg
+        where msgId = #{msgId}
+    </delete>
+
+    <update id="updateMsg" parameterType="Msg">
+        update BookClubDB.Msg
+        set msgUserName=#{msgUserName},msg=#{msg},msgUserId=#{msgUserId},msgTime=#{msgTime}
+        where msgId = #{msgId};
+    </update>
+
+    <select id="queryMsgByMsgUserName" resultType="Msg">
+        select * from BookClubDB.Msg
+        where msgUserName like '%' #{msgUserName} '%'
+    </select>
+
+</mapper>

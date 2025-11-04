@@ -1,0 +1,9 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exert.dao.RoleMapper">
+
+    <select id="queryAllRoles" resultType="Roles">
+        select * from BookClubDB.roles
+    </select>
+</mapper>

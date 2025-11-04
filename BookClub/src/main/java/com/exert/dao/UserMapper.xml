@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exert.dao.UserMapper">
+
+    <insert id="addUser" parameterType="Users">
+        insert into BookClubDB.users (email, password, name, sex, admin, motto, avatar)
+        values (#{email},#{password},#{name},#{sex},#{admin},#{motto},#{avatar});
+    </insert>
+
+    <delete id="deleteUserByUserId" parameterType="int">
+        delete from BookClubDB.users
+        where userId = #{userId}
+    </delete>
+
+    <update id="updateUser" parameterType="Users">
+        update BookClubDB.users
+        set email=#{email},password=#{password},name=#{name},sex=#{sex},admin=#{admin},motto=#{motto},avatar=#{avatar}
+        where userId = #{userId};
+    </update>
+
+    <select id="queryUserByUserId" resultType="Users">
+        select * from BookClubDB.users
+        where userId = #{userId}
+    </select>
+
+    <select id="queryUserByEmail" resultType="Users">
+        select * from BookClubDB.users
+        where email = #{email}
+    </select>
+
+    <select id="queryAllUsers" resultType="Users">
+        select * from BookClubDB.users
+    </select>
+
+    <select id="queryUsersByAdmin" resultType="Users">
+        select * from BookClubDB.users
+        where admin = #{admin}
+    </select>
+
+    <select id="queryUserByNameAndAdmin" resultType="Users">
+        select * from BookClubDB.users
+        where name like '%' #{name} '%'
+        and admin = #{admin}
+    </select>
+
+    <select id="queryUsersByName" resultType="Users">
+        select * from BookClubDB.users
+        where name like '%' #{name} '%'
+    </select>
+
+    <select id="login" resultType="Users">
+        select * from BookClubDB.users
+        where email = #{email}
+        and password = #{password}
+    </select>
+
+    <select id="queryUserByEmailAndUserId" resultType="Users">
+        select * from BookClubDB.users
+        where userId != #{userId}
+        and email = #{email}
+    </select>
+
+    <select id="queryPasswordByUserId" resultType="String">
+        select password from BookClubDB.users
+        where userId = #{userId}
+    </select>
+
+    <select id="queryUserIdByEmail" resultType="int">
+        select userId from BookClubDB.users
+        where email = #{email}
+    </select>
+
+    <select id="queryAvatarByUserId" resultType="String">
+        select avatar from BookClubDB.users
+        where userId = #{userId}
+    </select>
+
+    <update id="updateAvatarByUserId">
+        update BookClubDB.users
+        set avatar = #{avatar}
+        where userId = #{userId};
+    </update>
+
+    <update id="updatePasswordByUserId">
+        update BookClubDB.users
+        set password = #{password}
+        where userId = #{userId};
+    </update>
+
+    <update id="updateAdminByUserId">
+        update BookClubDB.users
+        set admin = #{admin}
+        where userId = #{userId};
+    </update>
+
+    <select id="queryNameByUserId" resultType="String">
+        select name from BookClubDB.users
+        where userId = #{userId}
+    </select>
+</mapper>

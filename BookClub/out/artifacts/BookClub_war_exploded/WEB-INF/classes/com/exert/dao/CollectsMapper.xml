@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exert.dao.CollectsMapper">
+
+    <select id="queryCollectsByUserId" resultType="Collects">
+        select * from BookClubDB.Collects
+        where userId = #{userId}
+    </select>
+
+    <select id="queryCollectsByBookId" resultType="Collects">
+        select * from BookClubDB.Collects
+        where bookId = #{bookId}
+    </select>
+
+    <delete id="deleteCollectByUserIdAndBookId" parameterType="int">
+        delete from BookClubDB.Collects
+        where bookId = #{bookId}
+        and userId = #{userId}
+    </delete>
+
+    <insert id="addCollect" parameterType="Collects">
+        insert into BookClubDB.Collects (bookId, userId)
+        values (#{bookId},#{userId});
+    </insert>
+
+</mapper>

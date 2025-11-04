@@ -1,0 +1,63 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exert.dao.BooksMapper">
+
+    <select id="queryAllBooks" resultType="Books">
+        select * from BookClubDB.Books
+    </select>
+
+    <insert id="addBook" parameterType="Books">
+        insert into BookClubDB.Books (bookName, author, publishYear, synopsis, img)
+        values (#{bookName},#{author},#{publishYear},#{synopsis},#{img});
+    </insert>
+
+    <delete id="deleteBookByBookId" parameterType="int">
+        delete from BookClubDB.Books
+        where bookId = #{bookId}
+    </delete>
+
+    <update id="updateBook" parameterType="Books">
+        update BookClubDB.Books
+        set bookName=#{bookName},author=#{author},publishYear=#{publishYear},synopsis=#{synopsis},img=#{img}
+        where bookId = #{bookId};
+    </update>
+
+    <select id="queryBooksByBookName" resultType="Books">
+        select * from BookClubDB.Books
+        where bookName like '%' #{bookName} '%'
+    </select>
+
+    <select id="queryBookByBookNameAndBookId" resultType="Books">
+        select * from BookClubDB.Books
+        where Books.bookId != #{bookId}
+        and bookName = #{bookName}
+    </select>
+
+    <select id="queryImgByBookId" resultType="String">
+        select img from BookClubDB.Books
+        where bookId = #{bookId}
+    </select>
+
+    <select id="queryBookByBookName" resultType="Books">
+        select * from BookClubDB.Books
+        where bookName = #{bookName}
+    </select>
+
+    <update id="updateImgByBookId">
+        update BookClubDB.Books
+        set img = #{img}
+        where bookId = #{bookId};
+    </update>
+
+    <select id="queryBookByBookId" resultType="Books">
+        select * from BookClubDB.Books
+        where bookId = #{bookId}
+    </select>
+
+    <select id="queryBookIdByBookName" resultType="int">
+        select bookId from BookClubDB.Books
+        where bookName = #{bookName}
+    </select>
+
+</mapper>
